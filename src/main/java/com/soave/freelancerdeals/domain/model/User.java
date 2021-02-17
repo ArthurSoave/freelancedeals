@@ -1,6 +1,10 @@
 package com.soave.freelancerdeals.domain.model;
 
+import java.time.LocalDate;
+
 public class User {
+
+    private int userId;
 
     private String name;
 
@@ -10,7 +14,17 @@ public class User {
 
     private String password;
 
+    private LocalDate userBirthdayDate;
+
     private Location location;
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
     public String getName() {
         return name;
@@ -42,6 +56,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public LocalDate getUserBirthdayDate() {
+        return userBirthdayDate;
+    }
+
+    public void setUserBirthdayDate(LocalDate userBirthdayDate) {
+        this.userBirthdayDate = userBirthdayDate;
     }
 
     public Location getLocation() {
