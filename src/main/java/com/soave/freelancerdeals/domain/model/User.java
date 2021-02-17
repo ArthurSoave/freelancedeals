@@ -16,6 +16,8 @@ public class User {
 
     private LocalDate userBirthdayDate;
 
+    private boolean userIsActive;
+
     private Location location;
 
     public int getUserId() {
@@ -64,6 +66,14 @@ public class User {
 
     public void setUserBirthdayDate(LocalDate userBirthdayDate) {
         this.userBirthdayDate = userBirthdayDate;
+    }
+
+    public boolean isUserIsActive() {
+        return userIsActive;
+    }
+
+    public void setUserIsActive(boolean userIsActive) {
+        this.userIsActive = userIsActive;
     }
 
     public Location getLocation() {
