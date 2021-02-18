@@ -1,1 +1,17 @@
-
+spring:
+  application:
+    name: '@project.name@'
+    version: '@project.version@'
+    description: '@project.description@'
+---
+spring:
+  datasource:
+    postgres:
+      hikari:
+        maxLifetime: 300000
+        idleTimeout: 120000
+      url: jdbc:postgresql://localhost:5432/freelance_deal
+      driverClassName: org.postgresql.Driver
+  config:
+    activate:
+      on-profile: default

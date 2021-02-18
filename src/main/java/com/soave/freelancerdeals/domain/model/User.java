@@ -1,23 +1,34 @@
 package com.soave.freelancerdeals.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.time.LocalDate;
 
 public class User {
 
+    @JsonProperty(value = "user_id")
     private int userId;
 
+    @JsonProperty(value = "user_name")
     private String name;
 
+    @JsonProperty(value = "user_email")
     private String email;
 
+    @JsonProperty(value = "user_login")
     private String login;
 
+    @JsonIgnore
     private String password;
 
+    @JsonProperty(value = "user_birthday_date")
     private LocalDate userBirthdayDate;
 
+    @JsonProperty(value = "user_is_active")
     private boolean userIsActive;
 
+    @JsonProperty(value = "user_location")
     private Location location;
 
     public int getUserId() {
