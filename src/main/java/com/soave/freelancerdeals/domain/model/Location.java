@@ -1,5 +1,7 @@
 package com.soave.freelancerdeals.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Location {
 
     private double lat;
@@ -12,7 +14,17 @@ public class Location {
 
     private String state;
 
+    @JsonProperty(value = "zipcode")
     private int zipCode;
+
+    public Location(double lat, double lng, String address, String city, String state, int zipCode) {
+        this.lat = lat;
+        this.lng = lng;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zipCode = zipCode;
+    }
 
     public double getLat() {
         return lat;

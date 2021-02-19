@@ -1,6 +1,7 @@
 package com.soave.freelancerdeals.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
@@ -17,9 +18,10 @@ public class User {
     private String email;
 
     @JsonProperty(value = "user_login")
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private String login;
 
-    @JsonIgnore
+    @JsonProperty(value = "user_password")
     private String password;
 
     @JsonProperty(value = "user_birthday_date")
@@ -30,6 +32,17 @@ public class User {
 
     @JsonProperty(value = "user_location")
     private Location location;
+
+    public User(int userId, String name, String email, String login, String password, LocalDate userBirthdayDate, boolean userIsActive, Location location) {
+        this.userId = userId;
+        this.name = name;
+        this.email = email;
+        this.login = login;
+        this.password = password;
+        this.userBirthdayDate = userBirthdayDate;
+        this.userIsActive = userIsActive;
+        this.location = location;
+    }
 
     public int getUserId() {
         return userId;

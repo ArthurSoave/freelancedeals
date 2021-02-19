@@ -1,4 +1,4 @@
-package com.soave.freelancerdeals.domain.service;
+package com.soave.freelancerdeals.service;
 
 import com.soave.freelancerdeals.domain.model.User;
 
@@ -7,7 +7,7 @@ import java.util.List;
 public interface UserService {
 
     //save user in database
-    User addUser(User user);
+    void addUser(User user);
 
     //edit user in database
     User updUser(User user);
@@ -19,7 +19,7 @@ public interface UserService {
     void inactivateUser(int userId);
 
     //get user by id from database
-    User getUserById(int userId);
+    User getUserById(int userId) throws Exception;
 
     //get all users from database
     List<User> getUsers();
