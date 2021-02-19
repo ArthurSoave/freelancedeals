@@ -20,4 +20,7 @@ public interface UserResource {
 
     @GetMapping("/users") //todo -> must be paginated
     List<User> getAllUsers();
+
+    @PutMapping("/users/user/{ID}/active/{status}")
+    void changeUserStatus(@PathVariable("ID") int idUser, @PathVariable("status") boolean isActive);
 }

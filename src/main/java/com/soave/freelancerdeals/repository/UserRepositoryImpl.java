@@ -114,4 +114,12 @@ public class UserRepositoryImpl implements UserRepository{
                 "      join freelance_deal.free_location lc on lc.location_id_location = us.user_location_id   ";
         return this.namedParameterJdbcTemplate.query(sql, new UserCompleteRowMapper());
     }
+
+    @Override
+    public void changeUserStatus(int idUser, boolean isActive) {
+        String sql = "update freelance_deal.free_user set user_active = :isActive where user_id = :idUser;";
+        this.namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource()
+                .addValue("isActive", isActive)
+                .addValue("idUser", idUser));
+    }
 }

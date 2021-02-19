@@ -56,4 +56,9 @@ public class UserServiceImpl implements UserService{
     public List<User> getUsersByName(String name) {
         return null;
     }
+
+    @Override
+    public void changeUserStatus(int idUser, boolean isActive) {
+        userRepository.changeUserStatus(idUser, isActive);
+    }
 }

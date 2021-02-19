@@ -27,4 +27,5 @@ public interface UserService {
     //get users by name
     List<User> getUsersByName(String name);
 
+    void changeUserStatus(int idUser, boolean isActive);
 }

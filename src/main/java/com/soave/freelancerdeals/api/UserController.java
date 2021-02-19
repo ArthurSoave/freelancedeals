@@ -32,4 +32,9 @@ public class UserController implements UserResource{
     public List<User> getAllUsers() {
         return userService.getUsers();
     }
+
+    @Override
+    public void changeUserStatus(int idUser, boolean isActive) {
+        userService.changeUserStatus(idUser, isActive);
+    }
 }

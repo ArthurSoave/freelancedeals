@@ -13,4 +13,5 @@ public interface UserRepository {
 
     List<User> getAllUsers();
 
+    void changeUserStatus(int idUser, boolean isActive);
 }
