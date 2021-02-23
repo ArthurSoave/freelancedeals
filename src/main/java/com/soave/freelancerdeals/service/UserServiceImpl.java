@@ -33,12 +33,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public void dltUser(int userId) {
-
-    }
-
-    @Override
-    public void inactivateUser(int userId) {
-
+        userRepository.deleteUser(userId);
     }
 
     @Override
@@ -53,8 +48,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public List<User> getUsersByName(String name) {
-        return null;
+    public List<User> getUsersByLogin(String name) {
+        return userRepository.getUsersByLogin(name);
     }
 
     @Override

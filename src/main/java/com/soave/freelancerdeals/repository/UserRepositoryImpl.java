@@ -76,42 +76,15 @@ public class UserRepositoryImpl implements UserRepository{
 
     @Override
     public Optional<User> getUserById(int userId) {
-
-        String sql = "    select us.user_id,                                                                        " +
-                "           us.user_name,                                                                      " +
-                "           us.user_email,                                                                     " +
-                "           us.user_username,                                                                  " +
-                "           us.user_birthday_date,                                                             " +
-                "           us.user_active,                                                                    " +
-                "           lc.location_latitude,                                                              " +
-                "           lc.location_longitude,                                                             " +
-                "           lc.location_address,                                                               " +
-                "           lc.location_city,                                                                  " +
-                "           lc.location_state,                                                                 " +
-                "           lc.location_zipcode                                                                " +
-                "      from freelance_deal.free_user us                                                        " +
-                "      join freelance_deal.free_location lc on lc.location_id_location = us.user_location_id   " +
-                "     where us.user_id = :userId;                                                              ";
+        String sql = queryGetUserComplete() +
+                "     where us.user_id = :userId; ";
         return this.namedParameterJdbcTemplate.query(sql, new MapSqlParameterSource()
                 .addValue("userId", userId), new UserCompleteRowMapper()).stream().findFirst();
     }
 
     @Override
     public List<User> getAllUsers() {
-        String sql = "    select us.user_id,                                                                   " +
-                "           us.user_name,                                                                      " +
-                "           us.user_email,                                                                     " +
-                "           us.user_username,                                                                  " +
-                "           us.user_birthday_date,                                                             " +
-                "           us.user_active,                                                                    " +
-                "           lc.location_latitude,                                                              " +
-                "           lc.location_longitude,                                                             " +
-                "           lc.location_address,                                                               " +
-                "           lc.location_city,                                                                  " +
-                "           lc.location_state,                                                                 " +
-                "           lc.location_zipcode                                                                " +
-                "      from freelance_deal.free_user us                                                        " +
-                "      join freelance_deal.free_location lc on lc.location_id_location = us.user_location_id   ";
+        String sql = queryGetUserComplete();
         return this.namedParameterJdbcTemplate.query(sql, new UserCompleteRowMapper());
     }
 
@@ -121,5 +94,47 @@ public class UserRepositoryImpl implements UserRepository{
         this.namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource()
                 .addValue("isActive", isActive)
                 .addValue("idUser", idUser));
+    }
+
+    @Override
+    public List<User> getUsersByLogin(String userLogin) {
+        String sql = queryGetUserComplete() +
+                " where us.user_username like %:userLogin%";
+        return this.namedParameterJdbcTemplate.query(sql, new MapSqlParameterSource()
+                .addValue("userLogin", userLogin),
+                new UserCompleteRowMapper());
+    }
+
+    @Override
+    public void deleteUser(int userId) {
+        //first we get the location id
+        String sqlLocationId = "select user_location_id from freelance_deal.free_user where user_id = :userId";
+        int locationId = this.namedParameterJdbcTemplate.queryForObject(sqlLocationId, new MapSqlParameterSource("userId", userId), Integer.class);
+
+        // second, we delete user register
+        String sqlUser = "delete from freelance_deal.free_user where user_id = :userId";
+        this.namedParameterJdbcTemplate.update(sqlUser, new MapSqlParameterSource().addValue("userId", userId));
+
+        //then delete user location
+        String sql = "delete from freelance_deal.free_location where location_id_location = :locationId;";
+        this.namedParameterJdbcTemplate.update(sql, new MapSqlParameterSource().addValue("locationId", locationId));
+    }
+
+    //Select Query with all user information
+    private String queryGetUserComplete(){
+        return "    select us.user_id,                                                                   " +
+                "           us.user_name,                                                                      " +
+                "           us.user_email,                                                                     " +
+                "           us.user_username,                                                                  " +
+                "           us.user_birthday_date,                                                             " +
+                "           us.user_active,                                                                    " +
+                "           lc.location_latitude,                                                              " +
+                "           lc.location_longitude,                                                             " +
+                "           lc.location_address,                                                               " +
+                "           lc.location_city,                                                                  " +
+                "           lc.location_state,                                                                 " +
+                "           lc.location_zipcode                                                                " +
+                "      from freelance_deal.free_user us                                                        " +
+                "      join freelance_deal.free_location lc on lc.location_id_location = us.user_location_id   " ;
     }
 }

@@ -15,9 +15,6 @@ public interface UserService {
     //fisical delete of user in database
     void dltUser(int userId);
 
-    //logical delete of user in database
-    void inactivateUser(int userId);
-
     //get user by id from database
     User getUserById(int userId) throws Exception;
 
@@ -25,7 +22,8 @@ public interface UserService {
     List<User> getUsers();
 
     //get users by name
-    List<User> getUsersByName(String name);
+    List<User> getUsersByLogin(String name);
 
     void changeUserStatus(int idUser, boolean isActive);
+
 }

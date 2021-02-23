@@ -14,4 +14,8 @@ public interface UserRepository {
     List<User> getAllUsers();
 
     void changeUserStatus(int idUser, boolean isActive);
+
+    List<User> getUsersByLogin(String userLogin);
+
+    void deleteUser(int userId);
 }

@@ -14,11 +14,6 @@ public class UserController implements UserResource{
     private UserService userService;
 
     @Override
-    public User getUserById(int idUser) throws Exception {
-        return userService.getUserById(idUser);
-    }
-
-    @Override
     public void addUser(User user) {
         userService.addUser(user);
     }
@@ -26,6 +21,21 @@ public class UserController implements UserResource{
     @Override
     public User updateUser(User user, int idUser) {
         return null;
+    }
+
+    @Override
+    public void deleteUser(int idUser) {
+        userService.dltUser(idUser);
+    }
+
+    @Override
+    public User getUserById(int idUser) throws Exception {
+        return userService.getUserById(idUser);
+    }
+
+    @Override
+    public List<User> getUserByLogin(String userName) {
+        return userService.getUsersByLogin(userName);
     }
 
     @Override
