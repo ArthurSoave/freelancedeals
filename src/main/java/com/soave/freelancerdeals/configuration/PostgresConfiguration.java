@@ -24,8 +24,8 @@ public class PostgresConfiguration {
         logger.info("URL: " + props.getUrl());
 
         HikariConfig hikariConfig = new HikariConfig();
-        hikariConfig.setUsername(""); //todo: consume from yml file
-        hikariConfig.setPassword(""); //todo: consume from yml file
+        hikariConfig.setUsername("postgres"); //todo: consume from yml file
+        hikariConfig.setPassword("@UnixtrF1363"); //todo: consume from yml file
         hikariConfig.setJdbcUrl(props.getUrl());
         hikariConfig.setDriverClassName(props.getDriverClassName());
         hikariConfig.setConnectionTimeout(props.getConnectionTimeout());
