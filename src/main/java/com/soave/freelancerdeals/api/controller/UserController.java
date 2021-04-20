@@ -1,5 +1,6 @@
-package com.soave.freelancerdeals.api;
+package com.soave.freelancerdeals.api.controller;
 
+import com.soave.freelancerdeals.api.resource.UserResource;
 import com.soave.freelancerdeals.domain.model.User;
 import com.soave.freelancerdeals.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-public class UserController implements UserResource{
+public class UserController implements UserResource {
 
     @Autowired
     private UserService userService;

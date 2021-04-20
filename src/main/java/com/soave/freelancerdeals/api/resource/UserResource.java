@@ -1,4 +1,4 @@
-package com.soave.freelancerdeals.api;
+package com.soave.freelancerdeals.api.resource;
 
 import com.soave.freelancerdeals.domain.model.User;
 import org.springframework.web.bind.annotation.*;
